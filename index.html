@@ -1,1 +1,31 @@
-<h1>Wordle</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wordle</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1>Wordle</h1>
+    <h2>Commit test</h2>
+    <!-- <form>
+        <input type="text" pattern="^[A-Za-z]+$" id="userGuess">
+    </form> -->
+    <form>
+        <input type="text" maxlength="1" size="1" id="letter1" onkeyup="autoTab('letter1', 'letter2')"/>
+        <input type="text" maxlength="1" size="1" id="letter2" onkeyup="autoTab('letter2', 'letter3')"/>
+        <input type="text" maxlength="1" size="1" id="letter3" onkeyup="autoTab('letter3', 'letter4')"/>
+        <input type="text" maxlength="1" size="1" id="letter4" onkeyup="autoTab('letter4', 'letter5')"/>
+        <input type="text" maxlength="1" size="1" id="letter5" onkeyup="autoTab('letter5', 'wordCheck')"/>
+        <button id="wordCheck">Check</button>
+    </form>
+</body>
+
+</html>
+
+
