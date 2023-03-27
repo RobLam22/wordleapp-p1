@@ -12,18 +12,24 @@
 
 <body>
     <h1>Wordle</h1>
-    <h2>Commit test</h2>
     <!-- <form>
         <input type="text" pattern="^[A-Za-z]+$" id="userGuess">
     </form> -->
     <form>
-        <input type="text" maxlength="1" size="1" id="letter1" onkeyup="autoTab('letter1', 'letter2')"/>
-        <input type="text" maxlength="1" size="1" id="letter2" onkeyup="autoTab('letter2', 'letter3')"/>
-        <input type="text" maxlength="1" size="1" id="letter3" onkeyup="autoTab('letter3', 'letter4')"/>
-        <input type="text" maxlength="1" size="1" id="letter4" onkeyup="autoTab('letter4', 'letter5')"/>
-        <input type="text" maxlength="1" size="1" id="letter5" onkeyup="autoTab('letter5', 'wordCheck')"/>
-        <button id="wordCheck">Check</button>
+        <input type="text" maxlength="1" size="1" id="letter1" onfocus="this.select()" onkeyup="autoTab('letter1', 'letter2')"/>
+        <input type="text" maxlength="1" size="1" id="letter2" onfocus="this.select()" onkeyup="autoTab('letter2', 'letter3')"/>
+        <input type="text" maxlength="1" size="1" id="letter3" onfocus="this.select()" onkeyup="autoTab('letter3', 'letter4')"/>
+        <input type="text" maxlength="1" size="1" id="letter4" onfocus="this.select()" onkeyup="autoTab('letter4', 'letter5')"/>
+        <input type="text" maxlength="1" size="1" id="letter5" onfocus="this.select()" onkeyup="autoTab('letter5', 'wordCheck')"/>
+        <button type="button" id="guess">Check</button>
+        <button type="button" id="clear">Clear</button>
     </form>
+    <div id="guess1"></div>
+    <div id="guess2"></div>
+    <div id="guess3"></div>
+    <div id="guess4"></div>
+    <div id="guess5"></div>
+    <div id="guess6"></div>
 </body>
 
 </html>
