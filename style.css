@@ -1,8 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column; 
+}
+
 input {
     text-transform: uppercase;
-    /* display: flex; */
+    display: flex;
+    justify-items: center;
+    max-width: 3500px;
 }
-/* #game-board {
+#game-board {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -28,7 +35,7 @@ input {
   
   .letter-row {
     display: flex;
-  } */
+  }
 
 #keyboard-cont {
     margin: 1rem 0;
@@ -50,6 +57,5 @@ input {
     font-weight: 700;
     padding: 0.5rem;
     margin: 0 2px;
-    cursor: pointer;
     text-transform: uppercase;
   }
