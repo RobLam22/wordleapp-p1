@@ -26,10 +26,13 @@ console.log(selectedArray)
 const checkWord = document.getElementById("guess")
 checkWord.addEventListener("click", matchWord)
 
+let numberOfLives = 5
+
 function matchWord() {
+	// test word
+	const userWord = "ADIEU"
 	// const userWord = document.getElementById("userGuess")
 	// const userArray = userWord.value.toUpperCase().split("")
-	const userWord = "AAAA"
 	if (userWord.length != 5) {
 		// Maybe change to display a message under input field
 		alert("Not enough letters!")
@@ -40,25 +43,52 @@ function matchWord() {
 		alert("Invalid Word!")
 		return
 	}
-	const userArray = userWord.split("")
-	console.log(userArray)
+	// const userArray = userWord.split("")
+	// console.log(userArray)
 	const div = document.createElement("div")
 	div.classList.add("letterColour")
 
-	for (let i = 0; i < 5; i++) {
-		// for (let j = 0; j < 5; j++) {
-			if (selectedArray.includes(userArray[i]))
-			console.log("ding")
-		// }
+	// for (let i = 0; i < 5; i++) {
+	// 	// for (let j = 0; j < 5; j++) {
+	// 		if (selectedArray.includes(userArray[i]))
+	// 		console.log("ding")
+	// 	// }
+	// }
+	
+	// Checks end game
+	if (userWord == selectedWord) {
+		alert("Awesome!")
+		return
+	} else {
+		console.log(numberOfLives)
+		numberOfLives -= 1;
+		if (numberOfLives > 0) {
+			// Maybe add a counter somewhere
+			alert(`${numberOfLives} chances left`)
+		} else {
+			alert(`Better luck next time! The word was ${selectedWord}`)
+		}
 	}
-	// checkGuess()
 
 }
 
-// function checkGuess() {
-
-// 	console.log("hello")
-// }
+let output = document.getElementById("userGuess");
+       let keys = document.getElementsByClassName("key");
+       for (let keyElement of keys) {
+           let key = keyElement.textContent;
+           keyElement.addEventListener("click", function() {
+               switch (key) {
+                   case "␡":
+                       output.value = output.value.slice(0, output.value.length-1);
+                       break;
+                   case '␡ all':
+                       output.value = '';
+                       break;
+                   default:
+                       output.value += key;
+               }
+           });
+       }
 
 // PSEUDOCODE
 // USER ENTERS WORD
@@ -69,3 +99,5 @@ function matchWord() {
 // nested loop in exact spot, add .green spot
 // if found in another spot, add .yellow
 // else add .grey to letter and keyboard letter
+// if statement to check if word is correct -
+// minus counter
