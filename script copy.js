@@ -16,6 +16,10 @@
 // }
 // displayGame()
 
+// Gets the check button 
+const checkWord = document.getElementById("guess")
+checkWord.addEventListener("click", matchWord)
+
 // retrieves word from wordlist and splits into array
 // const selectedWord = validWords[Math.floor(Math.random() * validWords.length)]
 const selectedWord = "ARRAY"
@@ -23,26 +27,48 @@ const selectedArray = selectedWord.split("")
 console.log(selectedWord)
 console.log(selectedArray)
 
-const checkWord = document.getElementById("guess")
-checkWord.addEventListener("click", matchWord)
+const userInput = document.getElementById("userGuess")
+userInput.addEventListener("input", input);
 
-let numberOfLives = 5
-
+function input() {
+	let string = userInput.value.split("")
+    // console.log(string.length)
+    if (string.length == 0) {
+		userMsg.textContent = "Use only lower case characters"
+    } else {
+        for (let i = 0; i < string.length; i++) {
+            if (string[i] == string[i].toLowerCase()) {
+				userMsg.textContent = "Use only lower case characters"
+            } else {
+				userMsg.textContent = "Contains invalid characters"
+            }   
+		}}
+	}
+	
 function matchWord() {
-	// test word
-	const userWord = "ADIEU"
-	// const userWord = document.getElementById("userGuess")
-	// const userArray = userWord.value.toUpperCase().split("")
+	const userWord = userInput.value.toUpperCase()
+	const userArray = userWord.split("")
+	const characterCheck = /^[a-zA-Z]+$/.test(userWord)
+	if (characterCheck === false) {
+		alert("Contains Special Characters or Numbers!")
+		userInput.value = ""
+		return
+	}
 	if (userWord.length != 5) {
 		// Maybe change to display a message under input field
 		alert("Not enough letters!")
+		userInput.value = ""
 		return
 	}
 	if (!validWords.includes(userWord)) {
 		// Maybe change to display a message under input field
 		alert("Invalid Word!")
+		userInput.value = ""
 		return
 	}
+	
+
+	// checks userWord against selectedWord
 	// const userArray = userWord.split("")
 	// console.log(userArray)
 	const div = document.createElement("div")
@@ -56,6 +82,7 @@ function matchWord() {
 	// }
 	
 	// Checks end game
+	let numberOfLives = 5
 	if (userWord == selectedWord) {
 		alert("Awesome!")
 		return
