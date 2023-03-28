@@ -12,16 +12,9 @@
 </head>
 
 <body>
-    <h1>Wordle Basic</h1>
-        <input type="text" id="userGuess">
-        <button type="button" id="guess">Check</button>
-        <div id="game-board"> </div>
-    <div id="guess1"></div>
-    <div id="guess2"></div>
-    <div id="guess3"></div>
-    <div id="guess4"></div>
-    <div id="guess5"></div>
-    <div id="guess6"></div>
+    <h1>WORDLE</h1>
+        <!-- <input type="text" id="userGuess" maxlength="5" size="5"> -->
+        <div id="userAttempts"> </div>
     <div class="keyboard" id="keyboard-cont">
         <div class="first-row">
             <button class="key">q</button>
@@ -47,7 +40,7 @@
             <button class="key">l</button>
         </div>
         <div class="third-row">
-            <button class="key">&#9249;</button>
+            <button class="key">&#9249; all</button>
             <button class="key">z</button>
             <button class="key">x</button>
             <button class="key">c</button>
@@ -55,7 +48,8 @@
             <button class="key">b</button>
             <button class="key">n</button>
             <button class="key">m</button>
-            <button class="key">&#9249; all</button>
+            <button class="key">&#9249;</button>
+            <button id="guess">Check</button>
         </div>
     </div>
 </body>
