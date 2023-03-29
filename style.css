@@ -8,10 +8,17 @@ h1 {
     justify-content: center;
 }
 
+#errorMsg {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
 #userAttempts {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 40px;
   }
   
   .letterBox {
@@ -53,6 +60,24 @@ h1 {
     font-weight: 700;
     padding: 0.5rem;
     margin: 0 2px;
-    text-transform: uppercase;
+    display: flex;
+    flex-basis: auto;
   }
-  
+
+.rightPlace {
+    background-color: green;
+    border: 2px solid black;
+    color: white;
+}
+
+.wrongPlace {
+    background-color: goldenrod ;
+    border: 2px solid black;
+    color: white;
+}
+
+.notFound {
+    background-color: grey;
+    border: 2px solid black;
+    color: white;
+}

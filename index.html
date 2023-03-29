@@ -5,32 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Wordle</title>
+    <title>Wordle Basic</title>
     <link rel="stylesheet" href="style.css">
     <script src="wordlist.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script copy.js" defer></script>
 </head>
 
 <body>
-    <h1>Wordle</h1>
-    <!-- <form>
-        <input type="text" pattern="^[A-Za-z]+$" id="userGuess">
-    </form> -->
-    <form>
-        <input type="text" maxlength="1" size="1" id="letter1" onfocus="this.select()" onkeyup="autoTab('letter1', 'letter2')"/>
-        <input type="text" maxlength="1" size="1" id="letter2" onfocus="this.select()" onkeyup="autoTab('letter2', 'letter3')"/>
-        <input type="text" maxlength="1" size="1" id="letter3" onfocus="this.select()" onkeyup="autoTab('letter3', 'letter4')"/>
-        <input type="text" maxlength="1" size="1" id="letter4" onfocus="this.select()" onkeyup="autoTab('letter4', 'letter5')"/>
-        <input type="text" maxlength="1" size="1" id="letter5" onfocus="this.select()" onkeyup="autoTab('letter5', 'wordCheck')"/>
-        <button type="button" id="guess">Check</button>
-        <button type="button" id="clear">Clear</button>
-    </form>
-    <div id="guess1"></div>
-    <div id="guess2"></div>
-    <div id="guess3"></div>
-    <div id="guess4"></div>
-    <div id="guess5"></div>
-    <div id="guess6"></div>
+    <h1>WORDLE</h1>
+    <p id="errorMsg"></p>
+    <div id="userAttempts"> </div>
+    <div class="keyboard" id="keyboard-cont">
+        <div class="first-row">
+            <button class="key">Q</button>
+            <button class="key">W</button>
+            <button class="key">E</button>
+            <button class="key">R</button>
+            <button class="key">T</button>
+            <button class="key">Y</button>
+            <button class="key">U</button>
+            <button class="key">I</button>
+            <button class="key">O</button>
+            <button class="key">P</button>
+        </div>
+        <div class="second-row">
+            <button class="key">A</button>
+            <button class="key">S</button>
+            <button class="key">D</button>
+            <button class="key">F</button>
+            <button class="key">G</button>
+            <button class="key">H</button>
+            <button class="key">J</button>
+            <button class="key">K</button>
+            <button class="key">L</button>
+        </div>
+        <div class="third-row">
+            <button class="key" id="del">DEL</button>
+            <button class="key">Z</button>
+            <button class="key">X</button>
+            <button class="key">C</button>
+            <button class="key">V</button>
+            <button class="key">B</button>
+            <button class="key">N</button>
+            <button class="key">M</button>
+            <button id="guess">CHECK</button>
+        </div>
+    </div>
 </body>
 
 </html>
