@@ -4,7 +4,8 @@ function displayGame() {
 
     for (let i = 0; i < 6; i++) {
         let row = document.createElement("div")
-        row.classList.add(`wordRow`, `row${i}`)
+        row.classList.add(`wordRow`)
+		row.id = `row${i}`
     
         for (let j = 0; j < 5; j++) {
             let box = document.createElement("div")
@@ -20,12 +21,12 @@ displayGame()
 let error = document.getElementById("errorMsg")
 let numberOfAttempts = 0
 let currentLetterBoxIndex = 0
-let letters = 1
-
 let rowIndex = 0
-// let outputRow = document.querySelector(`.row${rowIndex}`)
+
+selectNextLine()
+
 function selectNextLine() {
-	outputRow = document.querySelector(`.row${rowIndex}`)
+	outputRow = document.getElementById(`row${[rowIndex]}`)
 	rowIndex++;
 	return outputRow
 }
@@ -42,28 +43,26 @@ for (let keyElement of keys) {
 	function handleClick() {
 		switch (key) {
 		case "DEL":
-			// let p = document.querySelector(`#letter${[letterIndex]} p`);
 			// output[currentLetterBoxIndex].removeAttribute(id)
 			let pNodeList = document.querySelectorAll(`.letterBox p`);
 			pNodeList[pNodeList.length - 1].remove();
 			currentLetterBoxIndex--;
 			userArr.pop()
-			console.log(userArr)
-			console.log(currentLetterBoxIndex)
+			console.log(userArr, currentLetterBoxIndex)
 			break;
 		default:
 			if (currentLetterBoxIndex > 4) {
 				break;
 			} else {
 				// function updateLetterBox
-				output[currentLetterBoxIndex].id = `letter${currentLetterBoxIndex}`
+				outputRow.childNodes[currentLetterBoxIndex].id = `letter${currentLetterBoxIndex}`
 				const p = document.createElement("p")
 				p.textContent = key
 				// outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
-				output[currentLetterBoxIndex].appendChild(p)
+				outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
 				currentLetterBoxIndex++
 				userArr.push(key)
-				console.log(userArr, currentLetterBoxIndex)
+				console.log(userArr, currentLetterBoxIndex, p.textContent)
 			}
 		}
 	}
@@ -100,29 +99,28 @@ function matchWord() {
 		return
 	}
 	error.textContent = ""
-	// FOR LOOP TO CHECK LETTERS
+
+	// FOR LOOP TO CHECK LETTERS - WORKS
 	for (let i = 0; i < userArr.length; i++) {
 		// LOGIC check for word / letter
-						if (chosenArray[i] === userArr[i]) { // OR	if (chosenWordArr.indexOf(clickedLetters[i]) >= 0 {  
-							document.getElementById(`letter${i}`).classList.add("rightPlace")
-							console.log("GREEN")
-						} else if (chosenArray.indexOf(userArr[i]) >= 0) { // OR } else if (chosenWordArr.indexOf(clickedLetters[i]) == i) {
-							document.getElementById(`letter${i}`).classList.add("wrongPlace")
-							console.log("YELLOW")
-						} else {
-							document.getElementById(`letter${i}`).classList.add("notFound")
-							console.log("GREY")
-						}
-					}
+		if (chosenArray[i] === userArr[i]) { // OR	if (chosenWordArr.indexOf(clickedLetters[i]) >= 0 {  
+			document.getElementById(`letter${[i]}`).classList.add("rightPlace")
+			outputRow.childNodes[i].removeAttribute("id")
+		} else if (chosenArray.indexOf(userArr[i]) >= 0) { // OR } else if (chosenWordArr.indexOf(clickedLetters[i]) == i) {
+			document.getElementById(`letter${[i]}`).classList.add("wrongPlace")
+			outputRow.childNodes[i].removeAttribute("id")
+		} else {
+			document.getElementById(`letter${[i]}`).classList.add("notFound")
+			outputRow.childNodes[i].removeAttribute("id")
+		}
+	}
 
 	// // Resets Array for next Guess
-	// userArr = []
-	// userWord = 0
-	// userArrUpperCase = []
+	userArr = []
 
 	// Checks end game
 	if (userWord == chosenWord) {
-		alert("Awesome!")
+		errorMsg.textContent = "Winner winner chicken dinner"
 		return
 	} else {
 		console.log(numberOfAttempts)
@@ -135,38 +133,20 @@ function matchWord() {
 		}
 	}
 	console.log(numberOfAttempts)
-
+	currentLetterBoxIndex = 0
 	// Removes IDs from first previous Guess
-	for (let i = 0; i < outputRow.childNodes.length; i++) {
-		outputRow.childNodes[i].removeAttribute("id")
-	}
+	// for (let i = 0; i < 5; i++) { //outputRow.childNodes.length
+	// 	outputRow.childNodes[i].removeAttribute("id")
+	// }
 	// outputRow.childNodes.length
 	// Move to next line
  	selectNextLine()
+}
 
-}
-				
-								
-								
-								
-								
-								
-// setAttribute removes and adds at the same time
-// GALITS CODE
-function onKeyInput() {
-	letters = guesses[guessCounter].querySelectorAll(".letter");
+function checkColour() {
 	
-	if (letterCounter.length > 4) {
-		alert("invalid word");
-	} else {
-		let div = document.querySelectorAll(".letter");
-		selectedDiv = div[letterCounter];
-		let p = document.createElement("p");
-		p.textContent = clickedLetter[letterCounter];
-		selectedDiv.appendChild(p);
-		++letterCounter;
-	}
 }
+													
 
 // PSEUDOCODE
 // USER ENTERS WORD
