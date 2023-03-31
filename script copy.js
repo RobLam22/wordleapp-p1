@@ -21,15 +21,21 @@ displayGame()
 let error = document.getElementById("errorMsg")
 let numberOfAttempts = 0
 let currentLetterBoxIndex = 0
+let rowIndex = 0
 
 selectNextLine()
 
 function selectNextLine() {
-	outputRow = document.getElementById(`row${[numberOfAttempts]}`)
-	// rowIndex++;
+	outputRow = document.getElementById(`row${[rowIndex]}`)
+	rowIndex++;
 	return outputRow
 }
 
+// Retrieves all div.letterBox as a NodeList
+let output = document.querySelectorAll(".letterBox");
+// let outputRow = document.querySelector(`.row${rowIndex}`)
+// console.log(outputRow.childNodes) // Returns NodeList of first row due to rowIndex = 0
+// console.log(outputRow.childNodes[currentLetterBoxIndex]) // Returns first letterbox in row
 // KEYBOARD FUNCTION - MODIFIED FROM PREVIOUS LAB
 let keys = document.getElementsByClassName("key");
 for (let keyElement of keys) {
@@ -37,10 +43,9 @@ for (let keyElement of keys) {
 	function handleClick() {
 		switch (key) {
 		case "DEL":
-			let p = document.querySelector(`#letter${[currentLetterBoxIndex - 1]} p`)
-			p.remove()
-			// let pNodeList = document.querySelectorAll(`.letterBox p`);
-			// outputRow[pNodeList.length - 1].remove();
+			// output[currentLetterBoxIndex].removeAttribute(id)
+			let pNodeList = document.querySelectorAll(`.letterBox p`);
+			pNodeList[pNodeList.length - 1].remove();
 			currentLetterBoxIndex--;
 			userArr.pop()
 			console.log(userArr, currentLetterBoxIndex)
@@ -65,8 +70,8 @@ for (let keyElement of keys) {
 }
 
 // Retrieves word from wordlist and splits into array
-// const chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
-const chosenWord = "BROOD"
+const chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
+// const chosenWord = "BITCH"
 // Generates word to Guess and puts it in array
 const chosenArray = chosenWord.split("")
 
@@ -92,21 +97,16 @@ function matchWord() {
 	error.textContent = ""
 
 	// For Loop to check position of letters and remove .ids
-	
 	for (let i = 0; i < userArr.length; i++) {
-		let div = outputRow.childNodes[i]
 		// LOGIC check for word / letter
 		if (chosenArray[i] === userArr[i]) { // OR	if (chosenWordArr.indexOf(clickedLetters[i]) >= 0 {  
 			document.getElementById(`letter${[i]}`).classList.add("rightPlace")
-			changeKeyColour(userArr[i], div);
 			outputRow.childNodes[i].removeAttribute("id")
 		} else if (chosenArray.indexOf(userArr[i]) >= 0) { // OR } else if (chosenWordArr.indexOf(clickedLetters[i]) == i) {
 			document.getElementById(`letter${[i]}`).classList.add("wrongPlace")
-			changeKeyColour(userArr[i], div);
 			outputRow.childNodes[i].removeAttribute("id")
 		} else {
 			document.getElementById(`letter${[i]}`).classList.add("notFound")
-			changeKeyColour(userArr[i], div);
 			outputRow.childNodes[i].removeAttribute("id")
 		}
 	}
@@ -131,25 +131,8 @@ function matchWord() {
 
 	// Move to next line
  	selectNextLine()
-	
 }
-
-let keyButtons = document.getElementsByClassName("key")
-for (let i = 0; i < keyButtons.length; i++) {
-	keyButtons[i].id = keyButtons[i].textContent
-}
-
-function changeKeyColour(key, div) {
-	let keyToChange = document.getElementById(key);
-	if (div.classList.contains("notFound")) { 
-		keyToChange.classList.add("notFound");
-	  } else if (div.classList.contains("wrongPlace")) {
-		keyToChange.classList.add("wrongPlace");
-	  } else {
-		keyToChange.classList.add("rightPlace");
-	  }
-}
-
+													
 // PSEUDOCODE
 // USER ENTERS WORD
 // each letter is a div
