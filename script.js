@@ -158,18 +158,13 @@ function matchWord() {
 	// Checks end game
 	if (userWord == chosenWord) {
 		errorMsg.textContent = "Winner winner chicken dinner"
+		tryAgain()
 		return
 	} else {
 		numberOfAttempts++;
 		if (numberOfAttempts === 6) {
 			errorMsg.textContent = (`Better luck next time! The word was ${chosenWord}`)
-			let resetButton = document.createElement("button")
-			resetButton.textContent = "TRY AGAIN"
-			resetButton.classList.add("key")
-			resetButton.id = "tryAgain"
-			resetButton.addEventListener("click", location.reload)
-			let keyboardFirstRow = document.getElementById("keyboard-cont")
-			keyboardFirstRow.insertAdjacentElement("afterbegin", resetButton)
+			tryAgain()
 		// } else {
 			// alert(`${6 - numberOfAttempts} chances left`)
 		}
@@ -184,6 +179,16 @@ function matchWord() {
 	
 }
 
+function tryAgain() {
+	let resetButton = document.createElement("button")
+	resetButton.textContent = "TRY AGAIN"
+	resetButton.classList.add("key")
+	resetButton.id = "tryAgain"
+	resetButton.setAttribute("onclick", "window.location.href='https://roblam22.github.io/wordleapp-p1/';")
+	// resetButton.addEventListener("click",)
+	let keyboardFirstRow = document.getElementById("keyboard-cont")
+	keyboardFirstRow.insertAdjacentElement("afterbegin", resetButton)
+}
 // Dynmically add IDs to keys
 let keyButtons = document.getElementsByClassName("key")
 for (let i = 0; i < keyButtons.length; i++) {
