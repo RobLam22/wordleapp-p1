@@ -57,7 +57,7 @@ for (let keyElement of keys) {
 				outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
 				currentLetterBoxIndex++
 				userArr.push(key)
-				console.log(userArr, currentLetterBoxIndex, p.textContent)
+				// console.log(userArr, currentLetterBoxIndex, p.textContent)
 			}
 		}
 	}
@@ -117,8 +117,7 @@ function matchWord() {
 	} else {
 		numberOfAttempts++;
 		if (numberOfAttempts === 6) {
-			// Maybe add a counter somewhere
-			alert(`Better luck next time! The word was ${chosenWord}`)
+			errorMsg.textContent = (`Better luck next time! The word was ${chosenWord}`)
 		// } else {
 			// alert(`${6 - numberOfAttempts} chances left`)
 		}
@@ -145,8 +144,11 @@ function changeKeyColour(key, div) {
 	  keyToChange.classList.add("rightPlace")
 	  keyToChange.classList.remove("wrongPlace");
 	} else if (div.classList.contains("wrongPlace")) {
-		keyToChange.classList.add("wrongPlace");
-		keyToChange.classList.remove("rightPlace");
+		if (keyToChange.classList.contains("rightPlace")) {
+			
+		} else {
+			keyToChange.classList.add("wrongPlace");
+		}
 	} else {
 		keyToChange.classList.add("notFound");
 	}
