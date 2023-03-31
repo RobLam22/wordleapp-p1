@@ -1,3 +1,32 @@
+// // Generates GAME BOARD
+function displayTitle() {
+    let board = document.getElementById("title");
+
+    for (let i = 0; i < 1; i++) {
+        let row = document.createElement("div")
+        row.classList.add(`wordRow`,`wordTitle`)
+		row.id = `titleWord`
+    
+        for (let j = 0; j < 5; j++) {
+            let box = document.createElement("div")
+            box.className = `letterBox`
+            row.appendChild(box)
+        }
+
+        board.appendChild(row)
+    }
+	let titleArr = ["G","U","E","S","S"]
+	let colours = ["wrongPlace", "rightPlace", "notFound"]
+	let titleRow = document.querySelector(".wordTitle")
+	for (let i = 0; i < titleRow.childNodes.length; i++) {
+		let p = document.createElement("p")
+		p.textContent = titleArr[i]
+		titleRow.childNodes[i].classList.add(`${colours[[Math.floor(Math.random() * colours.length)]]}`)
+		titleRow.childNodes[i].appendChild(p)
+	}
+}
+displayTitle()
+
 // Generates GAME BOARD
 function displayGame() {
     let board = document.getElementById("userAttempts");
@@ -78,11 +107,14 @@ checkWord.addEventListener("click", matchWord)
 
 function deleteIntro() { 
 	// Removes Intro
-	let intros = document.getElementsByClassName("intro")
-	for (let i = 0; i < intros.length; i++) {
-		intros[i].remove()
-	}
-	intros[0].remove()
+	let intros = document.getElementById("intro")
+	// for (let i = 0; i < intros.length; i++) {
+	// 	// for (let i of intros) {
+	// 	console.log(i)
+	// 	intros[i].remove()
+	// }
+	intros.remove()
+	// intros[0].remove()
 }
 
 function matchWord() {
