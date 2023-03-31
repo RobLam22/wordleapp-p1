@@ -141,13 +141,15 @@ for (let i = 0; i < keyButtons.length; i++) {
 // Keyboard colour functionality
 function changeKeyColour(key, div) {
 	let keyToChange = document.getElementById(key);
-	if (div.classList.contains("notFound")) { 
-		keyToChange.classList.add("notFound");
-	  } else if (div.classList.contains("wrongPlace")) {
+ 	if (div.classList.contains("rightPlace")) {
+	  keyToChange.classList.add("rightPlace")
+	  keyToChange.classList.remove("wrongPlace");
+	} else if (div.classList.contains("wrongPlace")) {
 		keyToChange.classList.add("wrongPlace");
-	  } else {
-		keyToChange.classList.add("rightPlace");
-	  }
+		keyToChange.classList.remove("rightPlace");
+	} else {
+		keyToChange.classList.add("notFound");
+	}
 }
 
 // PSEUDOCODE
