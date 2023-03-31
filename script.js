@@ -185,7 +185,6 @@ function tryAgain() {
 	resetButton.classList.add("key")
 	resetButton.id = "tryAgain"
 	resetButton.setAttribute("onclick", "window.location.href='https://roblam22.github.io/wordleapp-p1/';")
-	// resetButton.addEventListener("click",)
 	let keyboardFirstRow = document.getElementById("keyboard-cont")
 	keyboardFirstRow.insertAdjacentElement("afterbegin", resetButton)
 }
