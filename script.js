@@ -43,7 +43,7 @@ for (let keyElement of keys) {
 			// outputRow[pNodeList.length - 1].remove();
 			currentLetterBoxIndex--;
 			userArr.pop()
-			console.log(userArr, currentLetterBoxIndex)
+			// console.log(userArr, currentLetterBoxIndex)
 			break;
 		default:
 			if (currentLetterBoxIndex > 4) {
@@ -76,14 +76,24 @@ let userArr = []
 const checkWord = document.getElementById("guess")
 checkWord.addEventListener("click", matchWord)
 
+function deleteIntro() { 
+	// Removes Intro
+	let intros = document.getElementsByClassName("intro")
+	for (let i = 0; i < intros.length; i++) {
+		intros[i].remove()
+	}
+	intros[0].remove()
+}
+
 function matchWord() {
+	deleteIntro()
 	// Error checks
 	if (userArr.length < 5) {
 		error.textContent = "Word must be 5 letters long"
 		return
 	}
 	let userWord = userArr.join("")
-	console.log(userWord)
+	// console.log(userWord)
 	if (!validWords.includes(userWord)) {
 		// Maybe change to display a message under input field
 		error.textContent = "Invalid word"
@@ -118,6 +128,13 @@ function matchWord() {
 		numberOfAttempts++;
 		if (numberOfAttempts === 6) {
 			errorMsg.textContent = (`Better luck next time! The word was ${chosenWord}`)
+			let resetButton = document.createElement("button")
+			resetButton.textContent = "TRY AGAIN"
+			resetButton.classList.add("key")
+			resetButton.id = "tryAgain"
+			resetButton.addEventListener("click", location.reload)
+			let keyboardFirstRow = document.getElementById("keyboard-cont")
+			keyboardFirstRow.insertAdjacentElement("afterbegin", resetButton)
 		// } else {
 			// alert(`${6 - numberOfAttempts} chances left`)
 		}

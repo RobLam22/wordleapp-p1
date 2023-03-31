@@ -19,7 +19,7 @@ If the word does not exist or if you try to check a word that is less than 5 let
 * A score counter - where the player can continue to keep playing and track their record with most correct words in a row
 * Duordle - Having to guess two 5 letter words at the same time but with both words sharing a letter.
 * Displaying an introduction popup message to appear
-* A refresh button to clear the page and try again.
+* A refresh button to clear the page and try again. - WAS ADDED
 
 ## Conclusion
 Problem solving is fun! Extra fun with people who know how to code much better than me. Shoutout to IAs and Instructors who helped get me to where I am now with this project.
