@@ -65,8 +65,8 @@ for (let keyElement of keys) {
 }
 
 // Retrieves word from wordlist and splits into array
-// const chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
-const chosenWord = "BROOD"
+const chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
+// const chosenWord = "BROOD"
 // Generates word to Guess and puts it in array
 const chosenArray = chosenWord.split("")
 
@@ -92,7 +92,6 @@ function matchWord() {
 	error.textContent = ""
 
 	// For Loop to check position of letters and remove .ids
-	
 	for (let i = 0; i < userArr.length; i++) {
 		let div = outputRow.childNodes[i]
 		// LOGIC check for word / letter
@@ -120,7 +119,7 @@ function matchWord() {
 		if (numberOfAttempts === 6) {
 			// Maybe add a counter somewhere
 			alert(`Better luck next time! The word was ${chosenWord}`)
-		} else {
+		// } else {
 			// alert(`${6 - numberOfAttempts} chances left`)
 		}
 	}
@@ -134,11 +133,12 @@ function matchWord() {
 	
 }
 
+// Dynmically add IDs to keys
 let keyButtons = document.getElementsByClassName("key")
 for (let i = 0; i < keyButtons.length; i++) {
 	keyButtons[i].id = keyButtons[i].textContent
 }
-
+// Keyboard colour functionality
 function changeKeyColour(key, div) {
 	let keyToChange = document.getElementById(key);
 	if (div.classList.contains("notFound")) { 
