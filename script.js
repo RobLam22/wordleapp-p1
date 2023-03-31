@@ -118,7 +118,10 @@ function deleteIntro() {
 }
 
 function matchWord() {
+	if (numberOfAttempts < 1) {
 	deleteIntro()
+	}
+
 	// Error checks
 	if (userArr.length < 5) {
 		error.textContent = "Word must be 5 letters long"
