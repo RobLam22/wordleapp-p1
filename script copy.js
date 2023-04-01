@@ -1,6 +1,34 @@
 let titleArr = ["G","U","E","S","S"]
 let colours = ["wrongPlace", "rightPlace", "notFound"]
-// // Generates Title
+let error = document.getElementById("errorMsg")
+let numberOfAttempts = 0
+let currentLetterBoxIndex = 0
+let title = document.getElementById("titleWord")
+let resetButton = document.createElement("button")
+let score = 0
+
+// Dynmically add IDs to keys for functionality
+let keyButtons = document.getElementsByClassName("key")
+for (let i = 0; i < keyButtons.length; i++) {
+	keyButtons[i].id = keyButtons[i].textContent
+}
+
+// Retrieves word from wordlist and splits into array
+let chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
+// let chosenWord = "BROOD"
+// Generates word to Guess and puts it in array
+let chosenArray = chosenWord.split("")
+
+let userArr = []
+
+// Gets the check button 
+const checkWord = document.getElementById("guess")
+checkWord.addEventListener("click", matchWord)
+checkWord.addEventListener("click", colourChange)
+
+
+
+// Generates Title
 function displayTitle() {
 	let board = document.getElementById("title");
 	
@@ -48,34 +76,8 @@ function displayGame() {
 }
 displayGame()
 
-let error = document.getElementById("errorMsg")
-let numberOfAttempts = 0
-let currentLetterBoxIndex = 0
-let title = document.getElementById("titleWord")
-let resetButton = document.createElement("button")
-let score = 0
-
-// Dynmically add IDs to keys
-let keyButtons = document.getElementsByClassName("key")
-for (let i = 0; i < keyButtons.length; i++) {
-	keyButtons[i].id = keyButtons[i].textContent
-}
-
-// Retrieves word from wordlist and splits into array
-let chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
-// let chosenWord = "BROOD"
-// Generates word to Guess and puts it in array
-let chosenArray = chosenWord.split("")
-
-let userArr = []
-
-// Gets the check button 
-const checkWord = document.getElementById("guess")
-checkWord.addEventListener("click", matchWord)
-checkWord.addEventListener("click", colourChange)
-
+// 
 selectNextLine()
-
 function selectNextLine() {
 	outputRow = document.getElementById(`row${[numberOfAttempts]}`)
 	// rowIndex++;
