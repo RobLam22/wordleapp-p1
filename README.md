@@ -3,6 +3,8 @@
 ## Introduction
 This project was to create and attempt my own version of Wordle. Although as far as I could get, the only creativity I added were my own colours and bugs.
 
+Click on the link to play the game - [https://roblam22.github.io/wordleapp-p1/]
+
 ## How To Play
 The page will load without any information because I assume everyone knows how to play Wordle. If not, they will navigate to the README. and learn how to play here.
 
@@ -15,8 +17,10 @@ The letters will be coloured in 3 different colours listed below:
 
 If the word does not exist or if you try to check a word that is less than 5 letters, you will be prompted with an Error message that will appear under the Title.
 
+The game will allow you to keep playing. If the user gets it right, they can be prompted to keep going. If the user gets it wrong, they can reset and keep going.
+
 ## Features That Maybe Added
-* A score counter - where the player can continue to keep playing and track their record with most correct words in a row
+* A score counter - where the player can continue to keep playing and track their record with most correct words in a row - ADDED
 * Duordle - Having to guess two 5 letter words at the same time but with both words sharing a letter.
 * Displaying an introduction popup message to appear
 * A refresh button to clear the page and try again. - WAS ADDED

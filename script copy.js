@@ -62,8 +62,8 @@ for (let i = 0; i < keyButtons.length; i++) {
 }
 
 // Retrieves word from wordlist and splits into array
-// let chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
-let chosenWord = "BROOD"
+let chosenWord = validWords[Math.floor(Math.random() * validWords.length)]
+// let chosenWord = "BROOD"
 // Generates word to Guess and puts it in array
 let chosenArray = chosenWord.split("")
 
@@ -115,17 +115,17 @@ for (let keyElement of keys) {
 	keyElement.addEventListener("click", handleClick)
 }
 
-function deleteIntro() { 
-	let intros = document.querySelectorAll(".intros")
-	// Removes Intro
-	for (let i = 0; i < intros.length; i++) {
-		// for (let i of intros) {
-		console.log(i)
-		intros[i].remove()
-	}
-	// intros.remove()
-	// intros[0].remove()
-}
+// function deleteIntro() { 
+// 	let intros = document.querySelectorAll(".intros")
+// 	// Removes Intro
+// 	for (let i = 0; i < intros.length; i++) {
+// 		// for (let i of intros) {
+// 		// console.log(i)
+// 		intros[i].remove()
+// 	}
+// 	// intros.remove()
+// 	// intros[0].remove()
+// }
 
 function matchWord() {
 	// Deletes Intro lines
@@ -170,13 +170,14 @@ function matchWord() {
 	if (userWord == chosenWord) {
 		errorMsg.textContent = "Winner winner chicken dinner"
 		score++
-		scoreCounter() 
-		tryAgain()
+		scoreCounterAdd() 
+		playAgain()
 		return
 	} else {
 		numberOfAttempts++;
 		if (numberOfAttempts === 6) {
 			errorMsg.textContent = (`Better luck next time! The word was ${chosenWord}`)
+			scoreCounterReset() 
 			tryAgain()
 		// } else {
 			// alert(`${6 - numberOfAttempts} chances left`)
@@ -194,6 +195,16 @@ function matchWord() {
 
 function tryAgain() {
 	resetButton.textContent = "TRY AGAIN"
+	resetButton.classList.add("key")
+	resetButton.id = "tryAgain"
+	// resetButton.setAttribute("onclick", "window.location.href='https://roblam22.github.io/wordleapp-p1/';")
+	let keyboardFirstRow = document.getElementById("keyboard-cont")
+	keyboardFirstRow.insertAdjacentElement("afterbegin", resetButton)
+	resetButton.addEventListener("click", reset)
+}
+
+function playAgain() {
+	resetButton.textContent = "KEEP GOING!"
 	resetButton.classList.add("key")
 	resetButton.id = "tryAgain"
 	// resetButton.setAttribute("onclick", "window.location.href='https://roblam22.github.io/wordleapp-p1/';")
@@ -247,7 +258,16 @@ function reset() {
 	selectNextLine()
 }
 
-function scoreCounter() {
+function scoreCounterAdd() {
+	let titleScore = document.querySelectorAll(`.titleBox`)
+	for (let i = 0; i < titleScore.length; i++) {
+		titleScore[i].childNodes[0].textContent = `${score}`
+	}
+	// let scoreIndicator = titleScore[titleScore.length - 1]
+	// scoreIndicator.childNodes[0].textContent = `${score}`
+}
+function scoreCounterReset() {
+	score = 0
 	let titleScore = document.querySelectorAll(`.titleBox`)
 	for (let i = 0; i < titleScore.length; i++) {
 		titleScore[i].childNodes[0].textContent = `${score}`
@@ -258,7 +278,6 @@ function scoreCounter() {
 
 function colourChange() {
 	let titleLetters = document.querySelectorAll(`.titleBox`)
-	console.log(titleLetters)
 	for (let i = 0; i < titleLetters.length; i++) {
 			// titleLetters[i].classList.remove("notFound")
 			titleLetters[i].classList.remove("notFound", "rightPlace", "wrongPlace")
