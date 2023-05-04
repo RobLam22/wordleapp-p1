@@ -8,7 +8,7 @@ let resetButton = document.createElement("button")
 let score = 0
 
 // Dynmically add IDs to keys for functionality
-let keyButtons = document.getElementsByClassName("key")
+let keyButtons = document.querySelectorAll(".key")
 for (let i = 0; i < keyButtons.length; i++) {
 	keyButtons[i].id = keyButtons[i].textContent
 }
@@ -85,37 +85,40 @@ function selectNextLine() {
 }
 
 // KEYBOARD FUNCTION - MODIFIED FROM PREVIOUS LAB
-let keys = document.getElementsByClassName("key");
+let keys = document.querySelectorAll(".key");
 for (let keyElement of keys) {
 	let key = keyElement.textContent;
-	function handleClick() {
-		switch (key) {
-		case "DEL":
-			let p = document.querySelector(`#letter${[currentLetterBoxIndex - 1]} p`)
-			p.remove()
-			currentLetterBoxIndex--;
-			userArr.pop()
-			// console.log(userArr, currentLetterBoxIndex)
-			break;
-		default:
-			colourChange()
-			if (currentLetterBoxIndex > 4) {
-				break;
-			} else {
-				// function updateLetterBox
-				outputRow.childNodes[currentLetterBoxIndex].id = `letter${currentLetterBoxIndex}`
-				const p = document.createElement("p")
-				p.textContent = key
-				// outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
-				outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
-				currentLetterBoxIndex++
-				userArr.push(key)
-				// console.log(userArr, currentLetterBoxIndex, p.textContent)
-			}
+	keyElement.addEventListener("click", () => handleClick(key));
+  }
+  
+  function handleClick(key) {
+	switch (key) {
+	  case "DEL":
+		let p = document.querySelector(`#letter${[currentLetterBoxIndex - 1]} p`);
+		p.remove();
+		currentLetterBoxIndex--;
+		userArr.pop();
+		// console.log(userArr, currentLetterBoxIndex)
+		break;
+	  default:
+		colourChange();
+		if (currentLetterBoxIndex > 4) {
+		  break;
+		} else {
+		  // function updateLetterBox
+		  outputRow.childNodes[
+			currentLetterBoxIndex
+		  ].id = `letter${currentLetterBoxIndex}`;
+		  const p = document.createElement("p");
+		  p.textContent = key;
+		  // outputRow.childNodes[currentLetterBoxIndex].appendChild(p)
+		  outputRow.childNodes[currentLetterBoxIndex].appendChild(p);
+		  currentLetterBoxIndex++;
+		  userArr.push(key);
+		  // console.log(userArr, currentLetterBoxIndex, p.textContent)
 		}
 	}
-	keyElement.addEventListener("click", handleClick)
-}
+  }
 
 // function deleteIntro() { 
 // 	let intros = document.querySelectorAll(".intros")
